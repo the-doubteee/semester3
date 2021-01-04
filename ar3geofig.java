@@ -1,84 +1,61 @@
 package ankit;
 //Write a program to calculate the area of three geometrical figures using dynamic polymorphism
 // or dynamic method dispatch
+abstract class AreaPoly {
+
+    void find_area() {
+    }
+
+}
+
+class Circle extends AreaPoly {
+    final double radius;
+
+    void find_area() {
+        System.out.println("Circle area : " + (3.14 * radius * radius));
+    }
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+}
+
+class Rectangle extends AreaPoly {
+    final double length, width;
+
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    void find_area() {
+        System.out.println("Rectangle area : " + length * width);
+
+    }
+
+}
+
+class Square extends AreaPoly {
+    final double side;
+
+    void find_area() {
+        System.out.println("Square area : " + side * side);
+    }
+
+    public Square(double side) {
+        this.side = side;
+    }
+}
+
 public class ar3geofig {
-double a,b;
-
-   ar3geofig(double i,double j)
-   {
-	   a=i;
-	   b=j;
-   }
-   double area()
-   {
-	   System.out.println("Area of Figure is Undefined");
-	   return 0;
-   }
-   
-}
-
-class Rectangle extends ar3geofig
-{   
-    Rectangle(double a,double b)
-    {
-        super(a,b);
-    }
-   
-    //override area for Rectangle
-    double area()
-    {
-        System.out.println("Inside Area Of Rectangle");
-        return a*b;
+    public static void main(String args[]) {
+        AreaPoly p;
+        p = new Circle(10);
+        p.find_area();
+        p = new Rectangle(10, 5);
+        p.find_area();
+        p = new Square(12);
+        p.find_area();
     }
 }
 
-class Triangle extends ar3geofig
-{   
-    Triangle(double a,double b)
-    {
-        super(a,b);
-    }
-   
-    //override area for Triangle
-    double area()
-    {
-        System.out.println("Inside Area Of Triangle");
-        return a*b*0.5;
-    }
-}
-
-/*class circle extends ar3geofig
-{   
-    Rectangle(double a,double b)
-    {
-        super(a,b);
-    }
-   
-    //override area for Rectangle
-    double area()
-    {
-        System.out.println("Inside Area Of Rectangle");
-        return a*b;
-    }
-}*/
-
-class dynamic_method_dispatch
-{
-    public static void main(String args[])
-    {   
-          ar3geofig f = new ar3geofig(10,10);
-        Rectangle r = new Rectangle(9,5);
-        Triangle t = new Triangle(10,8);
-       
-        ar3geofig figref;
-       
-        figref = r;
-        System.out.println("Area ="+figref.area());
-       
-        figref = t;
-        System.out.println("Area ="+figref.area());
-       
-        figref = f;
-        System.out.println("Area ="+figref.area());
-    }
-}
